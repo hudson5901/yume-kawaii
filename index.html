@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      N高×スクラップ 地球からの脱出、環境問題について考える脱出ゲーム
+    </title>
+    <script src="https://unpkg.com/ityped@1.0.3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+      />
+    <link rel="icon" type="image/x-icon" href="./favicon1.ico" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic"
+      rel="stylesheet">
+    <style>
+    @font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+    url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+    url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+Using the icons in HTML
+    .wf-sawarabigothic { font-family: "Sawarabi Gothic"; }
+    body {
+      font-family: "Sawarabi Gothic"; 
+    }
+    .fade-enter-active {
+      transition: opacity 3s;
+      opacity: 0;
+    }
+
+    .fade-enter-to {
+      opacity: 1;
+    }
+
+    .fade-leave-active {
+      transition: opacity 3s;
+      opacity: 1;
+    }
+
+    .fade-leave-to {
+      opacity: 0;
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: opacity 0.5s ease;
+    }
+
+    .fade-enter-from,
+    .fade-leave-to {
+      opacity: 0;
+    }
+
+    body {
+      background-color: black;
+      height: 100vh;
+      position: relative;
+    }
+
+    header {
+      width: 100%;
+      height: auto;
+      background-color: black;
+      z-index: 1;
+      position: fixed;
+      padding: 20px;
+      color: white;
+    }
+
+
+    header a {
+      position: relative;
+      display: inline-block;
+      transition: .3s;
+      color: white;
+      text-decoration: none;
+      letter-spacing: 2px;
+      cursor: pointer;
+    }
+
+    header a::after {
+      position: absolute;
+      bottom: .3em;
+      left: 0;
+      content: '';
+      width: 100%;
+      height: 1px;
+      background-color: white;
+      opacity: 0;
+      transition: .3s;
+    }
+
+    header a:hover::after {
+      bottom: 0;
+      opacity: 1;
+    }
+
+    header h1 {
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      text-align: center;
+      justify-content: space-between;
+    }
+
+    ul {
+      display: flex;
+      text-align: right;
+      margin-right: 50px;
+    }
+
+    li {
+      margin: 0 20px;
+    }
+
+    .content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      width: auto;
+      max-width: 800px;
+      height: auto;
+      backdrop-filter: none;
+      backdrop-filter: grayscale(1);
+      backdrop-filter: brightness(1.5);
+      backdrop-filter: blur(5px);
+      backdrop-filter: contrast(0.8);
+      backdrop-filter: invert(0.7);
+      backdrop-filter: opacity(0.4);
+      backdrop-filter: sepia(0.4);
+      backdrop-filter: saturate(1.8);
+      backdrop-filter: hue-rotate(120deg);
+      backdrop-filter: blur(5px);
+    }
+
+    .main {
+      width: auto;
+      max-width: 1000px;
+      height: 681px;
+      background-color: #ffffff;
+      border-radius: 30px;
+      margin: 20px;
+      border: solid;
+      margin: 100px 20px;
+      padding: 20px;
+    }
+
+    .base1 {
+      text-align: center;
+      margin: 300px 0;
+    }
+
+    .base1 h1 {
+      font-size: 32px;
+      letter-spacing: 10px;
+      margin: 30px 0;
+    }
+
+    .base1 h2 {
+      margin: 20px 0;
+      letter-spacing: 10px;
+    }
+
+    .base1 a {
+      color: black;
+      margin: 20px 0;
+    }
+
+    .base1 button {
+      background-color: black;
+      height: 500px;
+      width: 100px;
+    }
+
+    .base2 button {
+      background-color: red;
+      height: 500px;
+      width: 100px;
+    }
+
+    .base2 img {
+      max-width: 100%;
+    }
+
+    .base2 a{
+      cursor: pointer;
+      color: black;
+    }
+
+    footer {
+      height: auto;
+      padding: 20px;
+    }
+
+    footer p {
+      font-size: 15px;
+    }
+
+    /**************SVG****************/
+
+    path.one {
+      transition: 0.4s;
+      transform: translateX(-60%);
+    }
+
+    path.two {
+      transition: 0.5s;
+      transform: translateX(-30%);
+    }
+
+    .cta:hover path.three {
+      animation: color_anim 1s infinite 0.2s;
+    }
+
+    .cta:hover path.one {
+      transform: translateX(0%);
+      animation: color_anim 1s infinite 0.6s;
+    }
+
+    .cta:hover path.two {
+      transform: translateX(0%);
+      animation: color_anim 1s infinite 0.4s;
+    }
+
+    .footer {
+      color: gray;
+    }
+
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: opacity .5s;
+    }
+
+    .fade-enter,
+    .fade-leave-to
+
+    /* .fade-leave-active below version 2.1.8 */
+      {
+      opacity: 0;
+    }
+    .ityped-cursor {
+    font-size: 1em;
+    opacity: 1;
+    -webkit-animation: blink 0.3s infinite;
+    -moz-animation: blink 0.3s infinite;
+    animation: blink 0.3s infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes blink {
+    100% {
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes blink {
+    100% {
+        opacity: 0;
+    }
+}
+.video {
+  pointer-events: none;
+}
+a.btn-border {
+  border: 2px solid #000;
+  border-radius: 0;
+  background: #fff;
+}
+
+a.btn-border:hover {
+  color: #fff;
+  background: #000;
+}
+
+.next-btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+.next {
+  padding: 50px;
+  text-align: center;
+}
+  </style>
+  </head>
+  <link rel="stylesheet" href="./a.css" />
+
+  <body>
+    <div id="app">
+      <!-- Quantity should be the same in Sass-->
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <div class="firefly"></div>
+      <header>
+        <nav>
+          <h1 href="" @click="top">YUME KAWAII</h1>
+          <ul>
+            <li><a href="">ホーム</a></li>
+            <li><a @click="story">ストーリー</a></li>
+            <li><a @click="help">ヘルプ</a></li>
+            <li><a @click="cont">お問い合わせ</a></li>
+          </ul>
+        </nav>
+      </header>
+      <div class="content">
+        <div class="main">
+          <div class="center">
+            <div class="base1" v-if="this.id == 1">
+              <audio src="./プロジェクト ゴースト -.m4a" preload="metadata" autoplay loop>
+              </audio>
+              <h1>Escape From Earth</h1>
+              <h2>地球からの脱出</h2>
+              <a @click="click" class="cta" href="#">
+                Start
+              </a>
+            </div>
+            <div class="base2" v-if="this.id == 2">
+              <audio src="./異端審問.mp3" preload="metadata" autoplay loop>
+              </audio>
+              <div class="video">
+              <iframe width="100%" height="500px" src="https://www.youtube.com/embed/ix14Qu161cI?rel=0&autoplay=1&mute=1&playsinline=1&loop=1&playlist=ix14Qu161cI&controls=0&disablekb=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="next">
+              <a @click="click" class="next-btn btn-border">次へ</a>
+            </div>
+            </div>
+            <div class="base2" v-if="this.id == 5">
+              <audio src="./異端審問.mp3" preload="metadata" autoplay loop>
+              </audio>
+              <div class="map">
+                <a @click="click">
+                  <span class="material-icons">house</span>
+                  <p>家</p>
+                </a>
+                <a @click="click">
+                  <span class="material-icons">school</span>
+                  <p>学校</p>
+                </a>
+            </div>
+            </div>
+            <div class="base2" v-if="this.id == 3">
+              <img src="./IMG_0005.JPG" alt="">
+              <audio src="./迷いの森 (1).mp3" preload="metadata" autoplay loop></audio>
+              <h1>答えを入力</h1>
+              <answer-input></answer-input>
+              </div>
+              <div class="base2" v-if="this.id == 4">
+                <img src="./IMG_0006.JPG" alt="">
+                <button @click="click">次へ</button>
+                <button @click="back">前へ</button>
+              </div>
+              <div class="base3" v-if="this.id == 100">
+                <h1>ストーリー</h1>
+              </div>
+              <div class="base3" v-if="this.id == 101">
+                <h1>ヘルプ</h1>
+              </div>
+              <div class="base3" v-if="this.id == 102">
+                <h1>お問い合わせ</h1>
+              </div>
+            </div>
+          </div>
+          <p class="footer" style="text-align: right">
+            Copyright © 2020 Yumekawaii All rights reserved.
+          </p>
+        </div>
+      </div>
+
+      <script>
+    new Vue({
+      el: "#app",
+      data: {
+        id: 1,
+      },
+      methods: {
+        click: function () {
+          this.id = this.id + 1;
+        },
+        back: function () {
+          this.id = this.id - 1;
+        },
+        story: function () {
+          this.id = 100;
+        },
+        help: function () {
+          this.id = 101;
+        },
+        cont: function () {
+          this.id = 102;
+        },
+        top: function () {
+          this.id = 1;
+        },
+      },
+    });
+  </script>
+    </body>
+
+  </html>
